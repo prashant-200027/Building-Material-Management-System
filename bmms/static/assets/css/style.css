@@ -1,0 +1,14 @@
+.carousel-item{
+    background: url('../img/carousel-1.jpg');
+    background-size: cover;
+}
+
+.carousel-item{
+    background: url('../img/carousel-2.jpg');
+    background-size: cover;
+}
+
+.carousel-item{
+    background: url('../img/carousel-3.jpg');
+    background-size: cover;
+}

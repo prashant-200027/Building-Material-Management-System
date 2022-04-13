@@ -1,0 +1,90 @@
+{% extends 'header.html' %}
+{% load static %} 
+
+{% block pages %}
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">My Services</li>
+          </ol>
+          <h6 class="font-weight-bolder text-white mb-0">Index</h6>
+        </nav>
+        {% endblock %}
+
+    {% block content %}
+
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h6>Authors table</h6>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Service Provider</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Service Name</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Active Status</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Charges</th>
+                    <th class="text-secondary opacity-7"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for one in services %}
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          <img src="{{one.provider.pic.url}}" class="avatar avatar-sm me-3" alt="user1">
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm">{{one.provider.fname}}</h6>
+                          <p class="text-xs text-secondary mb-0">{{one.provider.email}}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{one.name}}</p>
+                      <p class="text-xs text-secondary mb-0">{{one.sector}}</p>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span class="badge badge-sm bg-gradient-success">
+                        {% if one.acitive %}
+                        Activated
+                        {% else %}
+                        Deactivate
+                        {% endif %}
+                      </span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{one.min_charge}}</span>
+                    </td>
+                    <td class="align-middle">
+                      <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-ellipsis-v text-secondary"></i>
+                      </a>
+                      <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
+                        <li><a class="dropdown-item border-radius-md" href="{% url 'edit-service' one.id %}"><i class="fa fa-pen"></i> Edit Service Details</a></li>
+                        <li><a class="dropdown-item border-radius-md" href="{% url 'delete-service' one.id %}">Delete Service</a></li>
+                          {% if one.acitive %}
+                          <li><a class="dropdown-item border-radius-md" href="{% url 'inactive-service' one.id %}">Inactive Service</a></li>
+                          {% else %}
+                          <li><a class="dropdown-item border-radius-md" href="{% url 'active-service' one.id %}">Active Service</a></li>
+                          {% endif %}
+                        
+                      </ul>
+                </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endblock %}
