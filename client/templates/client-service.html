@@ -1,0 +1,102 @@
+
+{% extends 'client-header.html' %}
+{% load static %}
+{% block service %}
+                                <a href="{% url 'client_service' %}" class="nav-item nav-link active">Service</a>
+                                {% endblock %}
+
+{% block clientcontent %}
+
+ <div class="service">
+    <div class="container">
+        <div class="section-header text-center">
+            <p>Our Services</p>
+            <h2>We Provide Services</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="{% static 'assets/img/service-1.jpg' %}" alt="Image">
+                        <div class="service-overlay">
+                            <p>
+                                Our Products will help to you for construct your Homes, Buildings.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="service-text">
+                        <h3>Building Construction</h3>
+                        <a class="btn" href="{% static 'assets/img/service-1.jpg' %}" data-lightbox="service">+</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="{% static 'assets/img/service-2.jpg' %}" alt="Image">
+                        <div class="service-overlay">
+                            <p>
+                                For Renovatin we'll help you and we provide you contact for reconstruction Agent.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="service-text">
+                        <h3>House Renovation</h3>
+                        <a class="btn" href="{% static 'assets/img/service-2.jpg' %}" data-lightbox="service">+</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="{% static 'assets/img/service-3.jpg' %}" alt="Image">
+                        <div class="service-overlay">
+                            <p>
+                                For your house we provide best architecture engineers.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="service-text">
+                        <h3>Architecture Design</h3>
+                        <a class="btn" href="{% static 'assets/img/service-3.jpg' %}" data-lightbox="service">+</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="{% static 'assets/img/service-5.jpg' %}" alt="Image">
+                        <div class="service-overlay">
+                            <p>
+                                We provide the best and secure transportation services.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="service-text">
+                        <h3>Fixing & Support & Transportation</h3>
+                        <a class="btn" href="{% static 'assets/img/service-5.jpg' %}" data-lightbox="service">+</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                <div class="service-item">
+                    <div class="service-img">
+                        <img src="{% static 'assets/img/service-6.jpg' %}" alt="Image">
+                        <div class="service-overlay">
+                            <p>
+                                In our products best compnies painting colors are available for your home.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="service-text">
+                        <h3>Painting</h3>
+                        <a class="btn" href="{% static 'assets/img/service-6.jpg' %}" data-lightbox="service">+</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+{% endblock %}

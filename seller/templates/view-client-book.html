@@ -1,0 +1,117 @@
+{% extends 'blank.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+      
+<div class="container-fluid pt-4 px-4">
+  <div class="row g-4">
+          <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Color Table</h6>
+                <div>
+                  {{msg}}
+                </div>
+
+
+                <div class="row text-dark">
+                  
+                  
+                  <div class="col-md-4">
+                   
+                  </div>
+                  </div>
+
+
+
+
+
+                <div class="row ">
+                  <div class="col-md-4 ">
+                    <div class="form-group ">
+                      <label for="example-text-input" class="form-control-label">Client name</label>
+                      <input class="form-control text-dark" type="text" disabled value="{{booking.client.fname}} {{booking.client.lname}}" name="cname">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label">Client Email</label>
+                      <input class="form-control text-dark" disabled type="text" value="{{booking.client.email}}" name="cemail">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="example-text-input" class="form-control-label">Client Contact</label>
+                      <input class="form-control text-dark" disabled type="text" value="{{booking.client.mobile}}" name="cname">
+                    </div>
+                  </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Client Amount</label>
+                        <input class="form-control text-dark" disabled type="text" value="{{booking.amount}}" name="cemail">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Booking Address</label>
+                        <input class="form-control" type="text" disabled value="{{booking.address}}" name="cname">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Booking Date</label>
+                        <input class="form-control text-dark" type="text" disabled value="{{booking.book_date}}" name="cname">
+                      </div>
+                    </div>
+                    
+                    </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Client Pay_id</label>
+                        <input class="form-control text-dark" disabled type="text" value="{{booking.pay_id}}" name="cemail">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Status</label>
+                        <input class="form-control text-dark" type="text" disabled value="{% if booking.status and booking.action %} Dispetch {% else %}Not Dispetch {% endif %}" name="cname">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Out For Delivery</label>
+                        <input class="form-control text-dark" type="text" disabled value="{% if booking.sta and booking.act %} Out For Delivery {% else %}Not Yet {% endif %}" name="cname">
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Status</label>
+                        <input class="form-control text-dark" type="text" disabled value="{% if booking.st and booking.ac %} Delivered {% else %}Not Delivered {% endif %}" name="cname">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+
+                  </div>
+
+            </div>
+          </div>
+          </div>
+          </div>
+
+{% endblock %}
+

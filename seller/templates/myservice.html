@@ -1,0 +1,81 @@
+{% extends 'blank.html' %}
+{% load static %}
+
+{% block my %}
+                    <a href="{% url 'myservice' %}" class="nav-item nav-link active"><i class="bi bi-file-spreadsheet-fill"></i>        My Products</a>
+                    {% endblock %}
+
+{% block content %}
+
+        <div class="container-fluid pt-4 px-4">
+            <div class="row g-4">
+                
+                
+                
+                <div class="col-sm-12 col-xl-12">
+                    <div class="bg-secondary rounded h-100 p-4">
+                        <h6 class="mb-4">My Products</h6>
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Material</th>
+                                    {% comment %} <th scope="col">Date</th> {% endcomment %}
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for one in services %}
+                                <tr>
+                                    {% comment %} <th scope="row">1</th> {% endcomment %}
+                                    <td>
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">{{one.mname}}</h6>
+                                        </div>
+                                    </td>
+                                    
+                                    <td >
+                                        {% if one.acitive %}
+                                          Activate
+                                          {% else %}
+                                          Deactivate
+                                          {% endif %}
+                                    </td>
+                                    
+                                    <td>
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-sm">{{one.price}}</h6>
+                                        </div>
+                                    </td>
+
+                                    <td class="align-middle">
+                                        <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
+                                          <i class="fa fa-ellipsis-v text-secondary"></i>
+                                        </a>
+                                        <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
+                                          <li><a class="dropdown-item border-radius-md" href="{% url 'edit-service' one.id %}"><i class="fa fa-pen"></i> Edit Service Details</a></li>
+                                          <li><a class="dropdown-item border-radius-md" href="{% url 'delete-service' one.id %}">Delete Service</a></li>
+                                            {% if one.acitive %}
+                                            <li><a class="dropdown-item border-radius-md" href="{% url 'inactive-service' one.id %}">Inactive Service</a></li>
+                                            {% else %}
+                                            <li><a class="dropdown-item border-radius-md" href="{% url 'active-service' one.id %}">Active Service</a></li>
+                                            {% endif %}
+                                           
+                                        </ul>
+                                  </td>
+
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+        <!-- Table End -->
+
+{% endblock  %}

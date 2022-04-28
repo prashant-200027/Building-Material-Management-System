@@ -1,0 +1,60 @@
+{% extends 'client-header.html' %}
+{% load static %}
+
+{% block clientcontent %}
+
+            
+
+
+
+            <!-- About Start -->
+            <div class="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-6">
+                            <div class="about-img">
+                                <img src="{{book.service.mimage.url}}" alt="Image">
+                            </div>
+                        </div>
+                     
+                        <div class="col-lg-7 col-md-6">
+                            <div class="about-text">
+                                <h2>{{book.service.shopname}}</h2>
+                                <p>
+                                    Material : {{book.service.mname}}
+                                </p>
+                                <p>
+                                   Type of Material : {{book.service.typematerial}}
+                                </p>
+                                <p>
+                                    About Product : {{book.service.proddesc}}
+                                </p>
+                                <p>
+                                   Booking Date : {{book.book_date}}
+                                </p>
+                                <p>
+                                   Booking Pay Id : {{book.pay_id}}
+                                </p>
+                                <p>
+                                   Booking Count : {{book.quantity}}
+                                </p>
+                                <p>
+                                   Delivery Address : {{book.address}}
+                                </p>
+                                <p>
+                                    Total Amount : {{book.amount}}
+                                </p>
+                               
+                               
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+            
+
+           
+
+
+{% endblock %}

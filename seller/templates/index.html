@@ -1,0 +1,108 @@
+{% extends 'blank.html' %}
+{% load static %}
+
+{% block dash %}
+                    <a href="{% url 'index' %}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    {% endblock %}
+
+{% block content %}
+
+            <!-- Sale & Revenue Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-6 col-xl-6">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-line fa-3x text-info"></i>
+                            <div class="ms-3">
+                                <h1 class="mb-2">Total Orders</h1>
+                                <h3 class="mb-0">{{count}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-6">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-bar fa-3x text-info"></i>
+                            <div class="ms-3">
+                                <h1 class="mb-2">Total Products</h1>
+                                <h3 class="mb-0">{{scount}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+            <!-- Sale & Revenue End -->
+
+
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    
+                    
+                    
+                    <div class="col-sm-12 col-xl-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">All Orders</h6>
+                            <table class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Client Name</th>
+                                        <th scope="col">Matreial Name</th>
+                                        <th scope="col">Booking Date</th>
+                                        <th scope="col">Charges</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  {% for one in bookings %}
+                                    <tr>
+                                         
+                                        <td>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h5 class="mb-0 text-sm">{{one.client.fname}} {{one.client.lname}}</h5>
+                                            <p class="mb-0 text-sm">{{one.client.email}}</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex flex-column justify-content-center">
+                                              <p class="text-xs font-weight-bold mb-0">{{one.service.shopname}}</p>
+                                              <p class="mb-0 text-sm">{{one.service.mname}}</p>
+                                            </div>
+                                        </td>
+                       
+                                        <td>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm">{{one.book_date}}</h6>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm">{{one.amount}}</h6>
+                                            </div>
+                                        </td>
+    
+    
+                                        <td class="align-middle">
+                                          <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa fa-ellipsis-v text-secondary"></i>
+                                          </a>
+                                        <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
+                                            <li><a class="dropdown-item border-radius-md" href="{% url 'view-client-book' one.id %}"><i class="fa fa-pen"></i> View Order Details</a></li>
+                                        </ul>
+                                        </td>
+    
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+
+
+           
+
+{% endblock %}
+            

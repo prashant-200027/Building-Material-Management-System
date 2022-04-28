@@ -1,0 +1,48 @@
+{% extends 'client-header.html' %}
+{% load static %}
+
+{% block myrders %}
+                                <a href="{% url 'view_order' %}" class="nav-item nav-link active">My Orders</a>
+                                {% endblock %}
+
+{% block quote %}
+{% endblock %}
+
+{% block clientcontent %}
+
+<center><h1 style="color: blue;"><b>My Orders</b></h1></center><br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Material Name</th>
+                <th>Order Date</th>
+                <th>Amount</th>
+                <th>Order Id</th>
+                <th>View</th>
+                <th>Delivery Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for one in booking %}
+            <tr>
+                <td>{{one.service.mname}}</td>
+                <td>{{one.book_date}}</td>
+                <td>{{one.amount}}</td>
+                <td>{{one.pay_id}}</td>
+                <td> <a href="{% url 'order_detail' one.id %}"> <button class="btn btn-primary">View</button></a> </td>
+                <td> <a href="{% url 'order_status'  one.id %}"> <button class="btn btn-primary">Delivery Status</button></a> </td>
+               
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+ <!-- <td> <a href="{% url 'order_status' one.id %}"> <button class="btn btn-primary">Check Status</button></a> </td> -->
+                <!-- {% if one.status == False %}
+                <td> <a href="{% url 'order_detail_success' one.id %}"> <button class="btn btn-primary">Complete</button></a> </td>
+                <td> <a href="{% url 'order_detail_fail' one.id %}"> <button class="btn btn-primary">Reject</button></a> </td>
+                {% else %}
+                <td><input class="form-control" disabled type="text" value="{% if one.status and one.action %}  Complete {% elif one.status and one.action == False %} Reject {% else %} Pending {% endif %}" name="cname"></td>
+                {% endif %} -->

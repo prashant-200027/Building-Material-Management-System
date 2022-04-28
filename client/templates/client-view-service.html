@@ -1,0 +1,57 @@
+{% extends 'client-header.html' %}
+{% load static %}
+
+{% block clientcontent %}
+
+
+
+            
+            <!-- About Start -->
+            <div class="about wow fadeInUp" data-wow-delay="0.1s">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-5 col-md-6">
+                            <div class="about-img">
+                                <img src="{{service.mimage.url}}" alt="Image">
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-6">
+                            <div class="section-header text-left">
+                                <p>Welcome to : {{service.shopname}}</p>
+                                <h2>{{service.mname}}</h2>
+                            </div>
+                            <div class="about-text">
+                                <p>
+                                    Amount : {{service.price}}
+                                </p>
+                                <p>
+                                    Contact : {{service.provider.mobile}}
+                                </p>
+                                <p>
+                                    Email : {{service.provider.email}}
+                                </p>
+                                <p>
+                                    Number Of Materials : {{service.nomc}}
+                                </p>
+                                <p>
+                                    Weights : {{service.weights}}
+                                </p>
+                                <p>
+                                    Description : {{service.proddesc}}
+                                </p>
+                                {% if request.session.client %}
+                                <a class="btn btn-info" href="{% url 'book_prod' service.id %}">Buy Now</a>
+                                {% else %}
+                                <a class="btn btn-info" href="{% url 'client_signin' %}">Buy Now</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- About End -->
+            
+
+
+
+{% endblock %}

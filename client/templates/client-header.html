@@ -1,0 +1,167 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Builderz - Construction Company Website Template</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Construction Company Website Template" name="keywords">
+        <meta content="Construction Company Website Template" name="description">
+
+        <!-- Favicon -->
+        <link href="{% static 'assets/img/favicon.ico' %}" rel="icon">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{% static 'assets/lib/flaticon/font/flaticon.css' %}" rel="stylesheet"> 
+        <link href="{% static 'assets/lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/lib/slick/slick.css' %}" rel="stylesheet">
+        <link href="{% static 'assets/lib/slick/slick-theme.css' %}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <!-- Top Bar Start -->
+            <div class="top-bar">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-lg-4 col-md-12">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <h1>E-Civil</h1>
+                                    <!-- <img src="{% static 'assets/img/logo.jpg' %}" alt="Logo"> -->
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-7 d-none d-lg-block">
+                            <div class="row">
+                                <div class="col-3"></div>
+                                <div class="col-3"></div>
+                                <div class="col-6">
+                                    {% if request.session.client %}
+                                        
+                                    <div class="top-bar-item">
+                                                
+                                                
+                                    <h2 style="color: azure;"><img src="{{uid.pic.url}}" alt="profile_image" style="height: 40px; width: 60px;"> {{uid.fname}} {{uid.lname}}</h2>
+                                            </div>
+                                        
+                                    {% else %}
+
+                                        <div class="top-bar-item">
+
+                                                <h3>Hello User..<a href="{% url 'client_signin' %}" style="color: rgb(23, 56, 165);">Sign In</a></h3>
+                                                
+                                            
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Top Bar End -->
+
+            <!-- Nav Bar Start -->
+            <div class="nav-bar">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                        <a href="#" class="navbar-brand">MENU</a>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                            <div class="navbar-nav mr-auto">
+                                {% block home %}
+                                <a href="{% url 'client_index' %}" class="nav-item nav-link ">Home</a>
+                                {% endblock %}
+                                {% if request.session.client %}
+                                {% block myrofile %}
+                                <a href="{% url 'client_profile' %}" class="nav-item nav-link ">My Profile</a>
+                                {% endblock %}
+                                {% block myrders %}
+                                <a href="{% url 'view_order' %}" class="nav-item nav-link">My Orders</a>
+                                {% endblock %}
+                                {% endif %}
+                                {% block service %}
+                                <a href="{% url 'client_service' %}" class="nav-item nav-link ">Service</a>
+                                {% endblock %}
+                                
+                                {% block about %}
+                                <a href="{% url 'client_about' %}" class="nav-item nav-link ">About</a>
+                                {% endblock %}
+                                {% block contact %}
+                                <a href="{% url 'client_contact' %}" class="nav-item nav-link ">Contact</a>
+                                {% endblock %}
+                                
+                                
+                               
+                                {% if request.session.client %}
+                                <a href="{% url 'client_logout' %}" class="nav-item nav-link">Logout</a>
+
+                                {% else %}
+                                {% endif %}
+                            </div>
+                            
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- Nav Bar End -->
+
+
+{% block clientcontent %}
+
+
+{% endblock %}
+
+
+<!-- Footer Start -->
+<div class="footer wow fadeIn" data-wow-delay="0.3s">
+    
+    
+    <div class="container copyright">
+        <div class="row">
+            <div class="col-md-6">
+                <p>&copy; <a href="#">E-Civil</a>, All Right Reserved.</p>
+            </div>
+            
+            <div class="col-md-6">
+                <p>Designed By <a href="https://htmlcodex.com">Prashant Rana</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+</div>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'assets/lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'assets/lib/wow/wow.min.js' %}"></script>
+<script src="{% static 'assets/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'assets/lib/isotope/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/lib/lightbox/js/lightbox.min.js' %}"></script>
+<script src="{% static 'assets/lib/waypoints/waypoints.min.js' %}"></script>
+<script src="{% static 'assets/lib/counterup/counterup.min.js' %}"></script>
+<script src="{% static 'assets/lib/slick/slick.min.js' %}"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+</html>

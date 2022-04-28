@@ -1,0 +1,39 @@
+{% extends 'client-header.html' %}
+{% load static %}
+{% block about %}
+                                <a href="{% url 'client_profile' %}" class="nav-item nav-link active">About</a>
+                                {% endblock %}
+
+{% block clientcontent %}
+ 
+ <!-- About Start -->
+ <div class="about wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5 col-md-6">
+                <div class="about-img">
+                    <img src="{% static 'assets/img/about.jpg' %}" alt="Image">
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-6">
+                <div class="section-header text-left">
+                    <h2>Welcome to E-Civil</h2>
+                </div>
+                <div class="about-text">
+                    <p>
+                        Everyone in the want to have his own home, where they can live and enjoy their life in calm and peace. So for the sake of it, they buy home readymade or buy a plot and start making a house on that by their own. In both cases the material for the house needs to bring at the site becomes very relevant. Sometimes it’s very hard for the persons to bring it to their places. 
+                    </p>
+                    <p>
+                        Sometimes the material will not be available or sometimes it’s not feasible to arrange the material to bring at the site. So to cure this problem we come up with the system which can solve the problem of this uncertainty and problem to cure. With this the users and vendors of material sellers come on the same platform and where vendors can manage their stock which they have available and users who have the desire to buy material to make the home, they can see the availability of the material at particular place of shop and then he can give order to buy the desired amount of material like the amount of sand and amount of cement, no. of bricks. 
+                    </p>
+                    <p>
+                        As he confirms the order he gets the option to deliver the material at his place, this is a good feature of this system as one can see the progress of the material loading in the particular vehicle and then sending and the arrival of the material to his place at given time. In this way, the system helps the user and admin to take care of the stock and order and then manage it to load in the vehicle and transports to the clients or user’s destination.
+                    </p>
+                    <a class="btn" href="">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+{% endblock %}

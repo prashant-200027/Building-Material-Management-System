@@ -1,0 +1,152 @@
+{% extends 'blank.html' %}
+{% load static %}
+
+{% block service %}
+<a href="{% url 'service' %}" class="nav-item nav-link active"><i class="fa fa-th me-2"></i>Add Product</a>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+<form action="{% url 'service' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="col-sm-12 col-xl-12">
+        <div class="bg-secondary rounded h-100 p-4">
+            <h6 class="mb-4">Add Material/Product</h6>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput"
+                            placeholder="Shop Name" name="shopname"required>
+                        <label for="floatingInput">Shop Name</label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="floatingSelect"
+                            aria-label="Floating label select example" name="typematerial"  required>
+                            <option value="">---</option>
+                            <option value="Cement">Cement</option>
+                            <option value="Plumbing">Plumbing</option>
+                            <option value="Painting">Painting</option>
+                            <option value="Furniture">Furniture</option>
+                            <option value="TextTile">TextTile</option>
+                        </select>
+                        <label for="floatingSelect">Material Type</label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput"
+                            placeholder="Material Name" name="mname"required>
+                        <label for="floatingInput">Material Name</label>
+                    </div>
+                </div>
+                
+            </div>
+
+
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="floatingSelect"
+                            aria-label="Floating label select example" name="country" value="{{uid.country}}" required>
+                            <option value="{{uid.country}}"></option>
+                            <option value="">---</option>
+                            <option value="India">India</option>
+                        </select>
+                        <label for="floatingSelect">Country</label>
+                    </div>
+                </div>
+                
+                <div class="col-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="floatingSelect"
+                            aria-label="Floating label select example" name="state" value="{{uid.state}}" required>
+                            <option value="{{uid.state}}">---</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Delhi">Delhi</option>
+                        </select>
+                        <label for="floatingSelect">State</label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingPassword"
+                            placeholder="District" name="district" required>
+                        <label for="floatingPassword">District</label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingPassword"
+                            placeholder="Pin Code" name="pincode" required>
+                        <label for="floatingPassword">Pin Code</label>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div class="row">
+   
+                <div class="col-3">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput"
+                            placeholder="Price" name="price" required>
+                        <label for="floatingInput">Price</label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput"
+                            placeholder="Weight" name="weights" required>
+                        <label for="floatingInput">Weight</label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput"
+                            placeholder="Material Count" name="nomc" required>
+                        <label for="floatingInput">Material Count</label>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+   
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Address"
+                        id="floatingTextarea" name="proddesc" style="height: 100px;">{% if uid.proddesc %} {{uid.proddesc}} {% endif %}</textarea>
+                    <label for="floatingTextarea">Product Description</label>
+                </div>
+                
+            </div>
+            
+            <div class="row">
+                <div class="col-6">
+                    <div class="mb-7">
+                        <label for="formFileSm" class="form-label">Material Pic</label>
+                        <input class="form-control form-control-sm bg-dark" name="mimage" id="formFileSm" type="file">
+                    </div>
+                </div>  
+            </div>
+
+            <div class="bg-secondary rounded h-100 p-4">
+                <div class="m-n2">
+                    <button class="btn btn-outline-info w-100 m-2 text-center" type="submit">Add Material</button>
+                </div>
+            </div>
+
+            
+            
+        </div>
+    </div>
+</form>
+</div>
+</div>
+    
+{% endblock %}

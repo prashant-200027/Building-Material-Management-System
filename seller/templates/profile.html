@@ -1,0 +1,145 @@
+{% extends 'blank.html' %}
+{% load static %}
+
+{% block profile %}
+                    <a href="{% url 'profile' %}" class="nav-item nav-link active"><i class="bi bi-person"></i> My Profile</a>
+                    {% endblock %}
+
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+<form action="{% url 'profile' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="col-sm-12 col-xl-12">
+        <div class="bg-secondary rounded h-100 p-4">
+            <h6 class="mb-4">My Profile</h6>
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput"
+                            placeholder="First Name" name="fname" value="{{uid.fname}}" required>
+                        <label for="floatingInput">First Name</label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingPassword"
+                            placeholder="Last Name" name="lname" value="{{uid.lname}}" required>
+                        <label for="floatingPassword">Last Name</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" disabled id="floatingInput"
+                            placeholder="name@example.com" name="email" value="{{uid.email}}">
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="row">
+                
+                <div class="col-4">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput"
+                            placeholder="Mobile" name="mobile" value="{{uid.mobile}}" required>
+                        <label for="floatingInput">Mobile</label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput"
+                            placeholder="Aadhaar No" name="aadhar" value="{{uid.aadhar}}" required>
+                        <label for="floatingInput">Aadhaar No</label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="floatingSelect"
+                            aria-label="Floating label select example" name="country" value="{{uid.country}}" required>
+                            <option value="{{uid.country}}">{{uid.country}}</option>
+                            <option value="India">India</option>
+                        </select>
+                        <label for="floatingSelect">Country</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                
+                <div class="col-4">
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="floatingSelect"
+                            aria-label="Floating label select example" name="state" value="{{uid.state}}" required>
+                            <option value="{{uid.state}}">{{uid.state}}</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Delhi">Delhi</option>
+                        </select>
+                        <label for="floatingSelect">State</label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingPassword"
+                            placeholder="District" name="district" value="{{uid.district}}" required>
+                        <label for="floatingPassword">District</label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingPassword"
+                            placeholder="Pin Code" name="pincode" value="{{uid.pincode}}" required>
+                        <label for="floatingPassword">Pin Code</label>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div class="row">
+   
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Address"
+                        id="floatingTextarea" name="address" style="height: 100px;">{% if uid.address %} {{uid.address}} {% endif %}</textarea>
+                    <label for="floatingTextarea">Address</label>
+                </div>
+                
+            </div>
+            
+            <div class="row">
+   
+                <div class="col-6">
+                    <div class="mb-8">
+                        <label for="formFileSm" class="form-label">Profile Pic</label>
+                        <input class="form-control form-control-sm bg-dark" name="pic" id="formFileSm" type="file">
+                    </div><br>
+                </div>  
+                <div class="col-6">
+                    <div class="mb-7">
+                        <label for="formFileSm" class="form-label">Aadhar Pic</label>
+                        <input class="form-control form-control-sm bg-dark" name="aadharpic" id="formFileSm" type="file">
+                    </div>
+                </div>  
+                
+            </div>
+
+            <div class="bg-secondary rounded h-100 p-4">
+                
+                <div class="m-n2">
+                    <button class="btn btn-outline-info w-100 m-2 text-center" type="submit">Edit Profile</button>
+                </div>
+            </div>
+
+            
+            
+        </div>
+    </div>
+</form>
+</div>
+</div>
+    
+{% endblock %}

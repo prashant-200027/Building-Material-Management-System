@@ -1,0 +1,44 @@
+{% extends 'client-header.html' %}
+{% load static %}
+
+{% block quote %}
+{% endblock %}
+
+{% block clientcontent %}
+{% if msg is not None %}
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           {{msg}}
+          </div>
+{% endif %}
+<div class="container">
+  <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
+    <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+      <div class="card z-index-0">
+        
+        <div class="card-body">
+            <h1>Order Product </h1>
+          <form role="form" action="" method="POST">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="">Address : </label>
+              <textarea name="address" class="form-control" id="" cols="30" rows="10"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="">Qantity : </label>
+            <input type="number" class="form-control form-control-lg" placeholder="quantity" name='quantity'>
+          </div>
+          
+            <div class="text-center">
+              <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Proceed to Pay</button>
+            </div>
+          </form>
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
