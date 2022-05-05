@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DarkPan - Bootstrap 5 Admin Template</title>
+    <title>E-Civil</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -49,10 +49,13 @@
             <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
                     <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
+                        <center><h3 class="text-info">Verify OTP</h3></center>
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                            <h3>Verify OTP</h3>
-                            {{msg}}
                         </div>
+                        <center><h4 class="text-info">{{msg}}</h4></center>
+                        <center><h4 class="text-primary">{{msge}}</h4></center>
+
+                        
                         <form action="{% url 'client_otp' %}" method="POST">
                             {% csrf_token %}
                             

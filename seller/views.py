@@ -55,7 +55,7 @@ def signup(request):
                     'password' : request.POST['password'],
                 }
                 return render(request,'otp.html',{'msg':'OTP sent on your Email!!','otp':otp})
-            return render(request,'signup.html',{'msg':'Both are not same'})
+            return render(request,'signup.html',{'msge':'Both are not same'})
     return render(request,'signup.html')
 
 def otp(request):
@@ -70,7 +70,7 @@ def otp(request):
         )
         del temp
         return render(request,'signin.html',{'msg':'Account Created'})
-    return render(request,'otp.html',{'msg':'Invalid OTP','otp':request.POST['otp']})
+    return render(request,'otp.html',{'msge':'Invalid OTP','otp':request.POST['otp']})
 
 
 def signin(request):
@@ -117,9 +117,9 @@ def changepswd(request):
                 if request.POST['npswd'] == request.POST['cnpswd']:
                     uid.password = request.POST['npswd']
                     uid.save()
-                    return render(request,'index.html',{'uid':uid})
-                return render(request,'changepswd.html',{'msg': 'Both New password are not same...'})
-            return render(request, 'changepswd.html',{'msg':'current password is invelid!!!'})
+                    return render(request,'index.html',{'uid':uid,'msg': 'Password change Successfully...'})
+                return render(request,'changepswd.html',{'uid':uid,'msg': 'Both New password are not same...'})
+            return render(request, 'changepswd.html',{'uid':uid,'msg':'current password is invalid!!!'})
     return render(request, 'changepswd.html',{'uid':uid})
 
 def profile(request):
@@ -163,7 +163,7 @@ def service(request):
             nomc = request.POST['nomc'],
             proddesc = request.POST['proddesc'],
         )
-        msg = 'Service added Successfully'
+        msg = 'Material added Successfully'
         return render(request,'service.html',{'uid':uid, 'msg':msg})
     return render(request,'service.html',{'uid':uid})
 

@@ -1,3 +1,4 @@
+from email import message
 from math import remainder
 from multiprocessing.connection import Client
 from pickle import FALSE
@@ -77,7 +78,7 @@ def client_signup(request):
                     'password' : request.POST['password'],
                 }
                 return render(request,'client-otp.html',{'msg':'OTP sent on your Email!!','otp':otp})
-            return render(request,'client-signup.html',{'msg':'Both are not same'})
+            return render(request,'client-signup.html',{'msg':'Both password are not same'})
     return render(request,'client-signup.html')
 
 def client_otp(request):
@@ -92,7 +93,7 @@ def client_otp(request):
         )
         del temp
         return render(request,'client-signin.html',{'msg':'Account Created'})
-    return render(request,'client-otp.html',{'msg':'Invalid OTP','otp':request.POST['otp']})
+    return render(request,'client-otp.html',{'msge':'Invalid OTP','otp':request.POST['otp']})
 
 def client_logout(request):
     # services = am.Service.objects.all()
@@ -262,7 +263,14 @@ def order_status(request,pk):
 def client_contact(request):
     try:
         uid = ClientUser.objects.get(email=request.session['client'])
-        return render(request,'client-contact.html',{'uid':uid})    
+        if request.method == 'POST':
+            Contact.objects.create(
+                name = request.POST['name'],
+                email = request.POST['email'],
+                subject = request.POST['subject'],
+                message = request.POST['message'],
+            )
+        return render(request,'client-contact.html',{'uid':uid,'msg':'Contact details sended successfully...'})    
     except:
         return render(request,'client-contact.html')
 

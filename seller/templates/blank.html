@@ -99,8 +99,9 @@
                 </a>
                 
                 <div class="navbar-nav align-items-center ms-auto">
+                    <center><h3 class="text-info">{{msg}}</h3></center>
                     
-                    {{msg}}
+
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="{{uid.pic.url}}" alt="" style="width: 40px; height: 40px;">
@@ -126,11 +127,11 @@
                 <div class="bg-secondary rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">E-Civil</a>, All Right Reserved. 
+                            &copy; <a href="{% url 'client_index' %}">E-Civil</a>, All Right Reserved. 
                         </div>
                         <div class="col-12 col-sm-6 text-center text-sm-end">
                             <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed By <a href="https://htmlcodex.com">Prashant Rana</a>
+                            Designed By <a href="">Prashant Rana</a>
                         </div>
                     </div>
                 </div>

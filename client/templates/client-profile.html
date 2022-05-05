@@ -5,7 +5,12 @@
                                 {% endblock %}
 
 {% block clientcontent %}
-
+{% if msg is not None %}
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           {{msg}}
+          </div>
+{% endif %}
 <form action="{% url 'client_profile' %}" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
 <div class="container-fluid py-4">

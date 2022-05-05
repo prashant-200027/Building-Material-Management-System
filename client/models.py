@@ -39,8 +39,14 @@ class Booking(models.Model):
     st = models.BooleanField(default=False)
     ac = models.BooleanField(default=False)
 
- 
-
-
     def __str__(self):
         return self.service.mname    
+
+class Contact(models.Model):
+    name = models.CharField(max_length=30,null=True,blank=True)
+    email = models.CharField(max_length=30,null=True,blank=True)
+    subject = models.CharField(max_length=30,null=True,blank=True)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name 
