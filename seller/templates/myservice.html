@@ -10,8 +10,6 @@
         <div class="container-fluid pt-4 px-4">
             <div class="row g-4">
                 
-                
-                
                 <div class="col-sm-12 col-xl-12">
                     <div class="bg-secondary rounded h-100 p-4">
                         <h6 class="mb-4">My Products</h6>
@@ -19,7 +17,6 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Material</th>
-                                    {% comment %} <th scope="col">Date</th> {% endcomment %}
                                     <th scope="col">Status</th>
                                     <th scope="col">Amount</th>
                                     <th scope="col"></th>
@@ -28,7 +25,6 @@
                             <tbody>
                             {% for one in services %}
                                 <tr>
-                                    {% comment %} <th scope="row">1</th> {% endcomment %}
                                     <td>
                                         <div class="d-flex flex-column justify-content-center">
                                             <h6 class="mb-0 text-sm">{{one.mname}}</h6>
@@ -64,7 +60,6 @@
                                            
                                         </ul>
                                   </td>
-
 
                                 </tr>
                             {% endfor %}

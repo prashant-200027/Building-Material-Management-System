@@ -1,8 +1,5 @@
 from django.db import models
 
-# Create your models here.
-# ORM = OBJECT RELATIONAL MAPPING 
-
 class User(models.Model):
     fname = models.CharField(max_length=100)
     lname = models.CharField(max_length=100)
@@ -32,7 +29,6 @@ class Service(models.Model):
     cntry = [('India','India')]
     stat = [('Gujarat','Gujarat'),('Goa','Goa'),('Delhi','Delhi'),('Rajsthan','Rajsthan')]
 
-
     provider = models.ForeignKey(User,on_delete=models.CASCADE)
     shopname = models.CharField(max_length=100,null=True,blank=True)
     typematerial = models.CharField(max_length=100, choices=mat)
@@ -47,13 +43,10 @@ class Service(models.Model):
     nomc = models.IntegerField(blank=True,null=True)
     proddesc = models.TextField(null=True,blank=True)
     acitive = models.BooleanField(default=True)
-    
     status = models.BooleanField(default=False)
     action = models.BooleanField(default=False)
-
     sta = models.BooleanField(default=False)
     act = models.BooleanField(default=False)
-
 
     def __str__(self):
         return self.provider.fname + ' -> ' + self.mname

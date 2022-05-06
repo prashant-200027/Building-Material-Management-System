@@ -29,13 +29,10 @@ class Booking(models.Model):
     pay_at = models.DateTimeField(auto_now_add = True)
     quantity = models.IntegerField(default=0)
     address = models.TextField(null=True,blank=True)
-
     status = models.BooleanField(default=False)
     action = models.BooleanField(default=False)
-
     sta = models.BooleanField(default=False)
     act = models.BooleanField(default=False)
-
     st = models.BooleanField(default=False)
     ac = models.BooleanField(default=False)
 

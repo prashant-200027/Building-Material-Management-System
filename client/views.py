@@ -11,9 +11,12 @@ import email
 import re
 from django.shortcuts import redirect, render
 from . models import *
+
 from random import choices, randrange
+
 from django.conf import settings
 from django.core.mail import send_mail
+
 from datetime import date
 
 import razorpay
@@ -30,6 +33,7 @@ def client_index(request):
     except:
         return render(request,'client-index.html',{'services':services})
 
+
 def client_view_service(request,pk):
     service = am.Service.objects.get(id=pk)
     try:
@@ -38,8 +42,8 @@ def client_view_service(request,pk):
     except:
         return render(request,'client-view-service.html',{'service':service})
 
+
 def client_signin(request):
-    # services = am.Service.objects.all()
     if request.method == 'POST':
         try:
             uid = ClientUser.objects.get(email=request.POST['email'])
@@ -95,10 +99,12 @@ def client_otp(request):
         return render(request,'client-signin.html',{'msg':'Account Created'})
     return render(request,'client-otp.html',{'msge':'Invalid OTP','otp':request.POST['otp']})
 
+
 def client_logout(request):
     # services = am.Service.objects.all()
     del request.session['client']
     return redirect('client_index')
+
 
 def client_forgot(request):
     if request.method == 'POST':
@@ -115,10 +121,10 @@ def client_forgot(request):
             uid.password = password
             uid.save()
             return render(request,'client-signin.html',{'msg':'Password sent on your mail....'})
-
         except:
             return render(request,'client-forgot.html',{'msg':'Account does not exist!!'})
     return render(request,'client-forgot.html')
+
 
 def client_profile(request):
     uid = ClientUser.objects.get(email=request.session['client'])
@@ -132,54 +138,52 @@ def client_profile(request):
         uid.state = request.POST['state']
         uid.district = request.POST['district']
         uid.pincode = request.POST['pincode']
-        
         if 'pic' in request.FILES:
             uid.pic = request.FILES['pic']
-            
         uid.save()
         return render(request, 'client-profile.html',{'uid':uid,'msg':'Profile has been updated'})
     return render(request, 'client-profile.html',{'uid':uid})
+
+
 def book_prod(request,pk):
     uid = ClientUser.objects.get(email=request.session['client'])
-    # try:
-    client = ClientUser.objects.get(email=request.session['client'])
-    if request.method == 'POST':
-        service = Service.objects.get(id=pk)
-        book = Booking.objects.create(
-            service = service,
-            book_date = date.today(),
-            address = request.POST['address'],
-            quantity = request.POST['quantity'],
-            client = client,
-            amount = int(request.POST['quantity'])*int(service.price),
-        )
-        currency = 'INR'
-        amount = int(book.quantity)*int(service.price)*100  # Rs. 200
-    
-        # Create a Razorpay Order
-        razorpay_order = razorpay_client.order.create(dict(amount=amount,
-                                                        currency=currency,
-                                                        payment_capture='0'))
-    
-        # order id of newly created order.
-        razorpay_order_id = razorpay_order['id']
-        callback_url = f'paymenthandler/{book.id}'
-    
-        # we need to pass these details to frontend.
-        context = {}
-        context['razorpay_order_id'] = razorpay_order_id
-        context['razorpay_merchant_key'] = settings.RAZOR_KEY_ID
-        context['razorpay_amount'] = amount
-        context['currency'] = currency
-        context['callback_url'] = callback_url
-        context['book'] = book
-        context['uid']= uid
-        context['date']= date.today()
+    try:
+        client = ClientUser.objects.get(email=request.session['client'])
+        if request.method == 'POST':
+            service = Service.objects.get(id=pk)
+            book = Booking.objects.create(
+                service = service,
+                book_date = date.today(),
+                address = request.POST['address'],
+                quantity = request.POST['quantity'],
+                client = client,
+                amount = int(request.POST['quantity'])*int(service.price),
+            )
+            currency = 'INR'
+            amount = int(book.quantity)*int(service.price)*100
         
-        return render(request,'book_proceed.html',context=context)
-    return render(request,'book-prod.html',{'uid':uid})
-    # except:
-        # return redirect('client_signin')
+            # Create a Razorpay Order
+            razorpay_order = razorpay_client.order.create(dict(amount=amount,currency=currency,payment_capture='0'))
+        
+            # order id of newly created order.
+            razorpay_order_id = razorpay_order['id']
+            callback_url = f'paymenthandler/{book.id}'
+        
+            # we need to pass these details to frontend.
+            context = {}
+            context['razorpay_order_id'] = razorpay_order_id
+            context['razorpay_merchant_key'] = settings.RAZOR_KEY_ID
+            context['razorpay_amount'] = amount
+            context['currency'] = currency
+            context['callback_url'] = callback_url
+            context['book'] = book
+            context['uid']= uid
+            context['date']= date.today()
+            
+            return render(request,'book_proceed.html',context=context)
+        return render(request,'book-prod.html',{'uid':uid})
+    except:
+        return redirect('client_signin')
 
 # authorize razorpay client with API Keys.
 razorpay_client = razorpay.Client(
@@ -210,8 +214,7 @@ def paymenthandler(request,pk):
             # verify the payment signature.
             result = razorpay_client.utility.verify_payment_signature(
                 params_dict)
-            # if result is None:
-            # amount = int(book.amount)*100  # Rs. 200
+           
             amount = int(book.amount)*100  # Rs. 200
 
             try:
@@ -229,10 +232,7 @@ def paymenthandler(request,pk):
 
                 # if there is an error while capturing payment.
                 return render(request, 'book-prod.html',{'uid':uid,'msg':'Payment failed !!! Try Again...'})
-            # else:
- 
-            #     # if signature verification fails.
-            #     return render(request, 'paymentfail.html')
+          
         except:
  
             # if we don't find the required parameters in POST data
@@ -250,15 +250,18 @@ def view_order(request):
     )[::-1]
     return render(request,'view_order.html',{'uid':uid,'booking':booking})
 
+
 def order_detail(request,pk):
     uid = ClientUser.objects.get(email=request.session['client'])
     book = Booking.objects.get(id = pk)
     return render(request,'order_detail.html',{'uid':uid,'book':book})
 
+
 def order_status(request,pk):
     uid = ClientUser.objects.get(email=request.session['client'])
     book = Booking.objects.get(id = pk)
     return render(request,'order_status.html',{'uid':uid,'book':book})
+
 
 def client_contact(request):
     try:

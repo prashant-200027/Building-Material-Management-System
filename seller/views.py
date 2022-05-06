@@ -28,6 +28,7 @@ def index(request):
     except:
         return render(request,'signin.html',{'msg':'Session has expired'})
 
+
 def signup(request):
     if request.method == "POST":
         try:
@@ -58,6 +59,7 @@ def signup(request):
             return render(request,'signup.html',{'msge':'Both are not same'})
     return render(request,'signup.html')
 
+
 def otp(request):
     if request.POST['uotp'] == request.POST['otp']:
         global temp
@@ -85,9 +87,11 @@ def signin(request):
             return render(request,'signin.html',{'msg':'Acccount does not exists'})
     return render(request,'signin.html')
 
+
 def logout(request):
     del request.session['email']
     return redirect('signin')
+
 
 def forgot(request):
     if request.method == 'POST':
@@ -102,11 +106,12 @@ def forgot(request):
             send_mail( subject, message, email_from, recipient_list )
             uid.password = password
             uid.save()
-            return render(request,'signin.html',{'msg':'Ne wpassword sent on your email'})
+            return render(request,'signin.html',{'msg':'New password sent on your email'})
 
         except:
             return render(request,'forgot.html',{'msg':'Account does not exist'})
     return render(request,'forgot.html')
+
 
 def changepswd(request):
     uid = User.objects.get(email=request.session['email'])
@@ -121,6 +126,7 @@ def changepswd(request):
                 return render(request,'changepswd.html',{'uid':uid,'msg': 'Both New password are not same...'})
             return render(request, 'changepswd.html',{'uid':uid,'msg':'current password is invalid!!!'})
     return render(request, 'changepswd.html',{'uid':uid})
+
 
 def profile(request):
     uid = User.objects.get(email=request.session['email'])
@@ -145,6 +151,7 @@ def profile(request):
         return render(request, 'profile.html',{'uid':uid,'msg':'Profile has been updated'})
     return render(request, 'profile.html',{'uid':uid})
 
+
 def service(request):
     uid = User.objects.get(email=request.session['email'])
     if request.method == 'POST':
@@ -167,16 +174,19 @@ def service(request):
         return render(request,'service.html',{'uid':uid, 'msg':msg})
     return render(request,'service.html',{'uid':uid})
 
+
 def myservice(request):
     uid = User.objects.get(email=request.session['email'])
     services = Service.objects.filter(provider=uid)
     return render(request,'myservice.html',{'uid':uid,'services':services})
+
 
 def delete_service(request,pk):
     uid = User.objects.get(email=request.session['email'])
     service = Service.objects.get(id=pk)
     service.delete()
     return redirect('myservice')
+
 
 def inactive_service(request,pk):
     uid = User.objects.get(email=request.session['email'])
@@ -185,6 +195,7 @@ def inactive_service(request,pk):
     service.save()
     return redirect('myservice')
 
+
 def active_service(request,pk):
     uid = User.objects.get(email=request.session['email'])
     service = Service.objects.get(id=pk)
@@ -192,17 +203,11 @@ def active_service(request,pk):
     service.save()
     return redirect('myservice')
 
+
 def edit_service(request,pk):
     uid = User.objects.get(email=request.session['email'])
     service = Service.objects.get(id=pk)
     if request.method == 'POST':
-        # service.name = request.POST['sname']
-        # service.sector = request.POST['sector']
-        # service.min_charge= request.POST['charge']
-        # service.area = request.POST['area']
-        # service.desc = request.POST['desc']
-
-        # print(request.POST['weights'],type(request.POST['weights']))
         service.shopname = request.POST['shopname']
         service.typematerial = request.POST['typematerial']
         service.country = request.POST['country']
@@ -214,10 +219,10 @@ def edit_service(request,pk):
         service.weights = int(request.POST['weights'])
         service.nomc = request.POST['nomc']
         service.proddesc = request.POST['proddesc']
-        # service.acitive = request.POST['acitive']
         service.save()
         return redirect('myservice')
     return render(request,'edit-service.html',{'uid': uid,'service':service})
+
 
 def view_client_booking(request):
     uid = User.objects.get(email=request.session['email'])
@@ -225,6 +230,7 @@ def view_client_booking(request):
     bookings = Booking.objects.filter(service__provider = uid,verify=True)
 
     return render(request,'view-client-booking.html',{'uid':uid,'bookings':bookings})  #,'bookings':bookings
+
 
 def view_client_book(request,pk):
     uid = User.objects.get(email=request.session['email'])
@@ -239,12 +245,14 @@ def order_dispetch(request,pk):
     book.save()
     return redirect('view-client-booking')
 
+
 def order_ofd(request,pk):
     book = Booking.objects.get(id=pk)
     book.sta = True
     book.act = True
     book.save()
     return redirect('view-client-booking')
+
 
 def order_dvd(request,pk):
     book = Booking.objects.get(id=pk)
